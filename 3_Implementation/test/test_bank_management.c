@@ -1,8 +1,8 @@
 #include "unity.h"
-#include <calculator_operations.h>
+#include <bank_management.h>
 
 /* Modify these two lines according to the project */
-#include <calculator_operations.h>
+#include <bank_management.h>
 #define PROJECT_NAME    "Calculator"
 
 /* Prototypes for all the test functions */

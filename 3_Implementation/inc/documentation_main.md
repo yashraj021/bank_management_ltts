@@ -1,2 +1,2 @@
-@mainpage Calculator Application by Bharath G
-@subpage calculator_operations.h
+@mainpage Bank_Management by Yash
+@subpage bank_management.h
