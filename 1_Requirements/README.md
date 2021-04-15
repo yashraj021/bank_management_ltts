@@ -57,8 +57,8 @@ It provides a way to meet the requirements of the user so as to build an effecti
 ##  Low level Requirements:
 |      ID          |Description                          |Status                         |
 |----------------|-------------------------------|-----------------------------|
-|LL01| Using accept function to accept the user information        |Implemented            |
-|LL022|Using deposit to deposit the money            |Implemented|
-|LL03|using display to display the user deatils   |Implemented|
-|LL04|Using withdraw to withdraw the amount |Implemented|
+|LL01| Create function to create account        |Implemented            |
+|LL022|Deposit to deposit the money            |Implemented|
+|LL03|Display to display the user deatils   |Implemented|
+|LL04|Withdraw to withdraw the amount |Implemented|
 
