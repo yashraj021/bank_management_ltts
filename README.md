@@ -1,4 +1,4 @@
 # Project Information
 
-* Add a brief discription about the project
-* Add the information about extra folders or files added
+A basic Bank Management application for users to create bank account.
+Features include very basic withdrawal and deposting functions.
