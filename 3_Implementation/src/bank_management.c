@@ -15,8 +15,6 @@ typedef struct Account {
     char acc_type[10];
     float amt;
     struct date dob;
-    struct date deposit;
-    struct date withdraw;
 } Account;
 
 struct AccountList {
@@ -24,14 +22,32 @@ struct AccountList {
     struct AccountList *next;
 } *first = NULL, *last=NULL;
 
+struct AccountList* get_account(int acc_num) {
+    
+    struct AccountList *node = NULL;
 
-void create_account(Account new_account) {
+    node=first;
+
+    while(node != NULL) {
+        int accNo= node->account.acc_no;
+        if(accNo == acc_num) return node;
+        node = node->next;
+    }
+
+    return node;
+}
+
+
+
+int create_account(Account new_account) {
+
+    if(get_account(new_account.acc_no) != NULL) return -1;
+
     struct AccountList *new_acc = NULL;
     new_acc = (struct AccountList *)malloc(sizeof(struct AccountList));
     new_acc->account.acc_no = new_account.acc_no;
     new_acc->account.age = new_account.age;
     new_acc->account.amt = new_account.amt;
-    new_acc->account.deposit = new_account.deposit;
     new_acc->account.dob = new_account.dob;
     new_acc->account.phone = new_account.phone;
 
@@ -67,21 +83,40 @@ void create_account(Account new_account) {
     if(first == NULL) {
         first = last = new_acc;
 
-        return;
+        return 1;
     }
 
     last->next=new_acc;
     new_acc=last;    
+
+    return 1;
 }
 
-void display(void) {
-    struct AccountList *node = NULL;
+int deposit_money(int account_number, int ammount) {
 
-    node=first;
+    struct AccountList *node=get_account(account_number);
 
-    while(node != NULL) {
-        int accNo= node->account.acc_no;
-        printf("%d\n", accNo);
-        node = node->next;
+    if(node!=NULL) {
+        node->account.amt +=  ammount;
+
+        return node->account.amt;
     }
+
+    return -1;
+
 }
+
+int withdraw_money(int account_number, int ammount) {
+
+    struct AccountList *node=get_account(account_number);
+
+    if(node!=NULL) {
+        node->account.amt -=  ammount;
+
+        return node->account.amt;
+    }
+
+    return -1;
+
+}
+

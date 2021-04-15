@@ -24,8 +24,6 @@ typedef struct Account {
     char acc_type[10];
     float amt;
     struct date dob;
-    struct date deposit;
-    struct date withdraw;
 } Account;
 
 struct AccountList {
@@ -33,8 +31,12 @@ struct AccountList {
     struct AccountList *next;
 };
 
-void create_account(Account new_account);
+int create_account(Account new_account);
 
-void display(void);
+int deposit_money(int account_number, int ammount);
+
+int withdraw_money(int account_number, int ammount);
+
+struct AccountList* get_account(int acc_num);
 
 #endif  /* #define __BANK_MANAGEMENT_H__ */

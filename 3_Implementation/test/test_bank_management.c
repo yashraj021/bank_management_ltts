@@ -1,15 +1,18 @@
 #include "unity.h"
+#include<string.h>
 #include <bank_management.h>
 
 /* Modify these two lines according to the project */
 #include <bank_management.h>
-#define PROJECT_NAME    "Calculator"
+#define PROJECT_NAME "Bank_Management"
 
 /* Prototypes for all the test functions */
-void test_add(void);
-void test_subtract(void);
-void test_multiply(void);
-void test_divide(void);
+void test_create(void);
+void test_duplicate(void);
+void test_deposit(void);
+void test_withdraw(void);
+
+Account new_account();
 
 /* Required by the unity test framework */
 void setUp(){}
@@ -19,44 +22,69 @@ void tearDown(){}
 /* Start of the application test */
 int main()
 {
+
 /* Initiate the Unity Test Framework */
   UNITY_BEGIN();
 
 /* Run Test functions */
-  RUN_TEST(test_add);
-  RUN_TEST(test_subtract);
-  RUN_TEST(test_multiply);
-  RUN_TEST(test_divide);
+  RUN_TEST(test_create);
+  RUN_TEST(test_deposit);
+  RUN_TEST(test_withdraw);
+  RUN_TEST(test_duplicate);
 
   /* Close the Unity Test Framework */
   return UNITY_END();
 }
 
 /* Write all the test functions */ 
-void test_add(void) {
-  TEST_ASSERT_EQUAL(30, add(10, 20));
+void test_create(void) {
   
-  /* Dummy fail*/
-  TEST_ASSERT_EQUAL(15000, add(7500, 7500));
+  Account new_acc = new_account();
+    
+  TEST_ASSERT_EQUAL(1, create_account(new_acc));
+
+  
 }
 
-void test_subtract(void) {
-  TEST_ASSERT_EQUAL(-3, subtract(0, 3));
-  
-  /* Dummy fail*/
-  TEST_ASSERT_EQUAL(100, subtract(1000, 900));
+void test_duplicate(void) {
+   Account new_acc = new_account();
+    
+  TEST_ASSERT_EQUAL(-1, create_account(new_acc));
 }
 
-void test_multiply(void) {
-  TEST_ASSERT_EQUAL(0, multiply(1, 0));
+void test_deposit(void) {
   
-  /* Dummy fail*/
-  TEST_ASSERT_EQUAL(10, multiply(2, 5));
+  Account new_acc = new_account();
+    
+  TEST_ASSERT_EQUAL(20000, deposit_money(new_acc.acc_no,10000));
+  
 }
 
-void test_divide(void) {
-  TEST_ASSERT_EQUAL(0, divide(1, 0));
+void test_withdraw(void) {
   
-  /* Dummy fail*/
-  TEST_ASSERT_EQUAL(1, divide(2, 2));
+  Account new_acc = new_account();
+    
+  TEST_ASSERT_EQUAL(10001, withdraw_money(new_acc.acc_no,9999));
+  
+}
+
+Account new_account() {
+  Account new_account;
+    struct date new_date, dob;
+
+    dob.day=2;
+    dob.month=10,
+    dob.year=1998;
+
+    new_account.acc_no=12345;
+    strcpy(new_account.acc_type, "Savings");
+    strcpy(new_account.address, "Patna");
+    new_account.age=12;
+    new_account.amt=10000;
+    strcpy(new_account.citizenship, "Indian");
+    new_account.dob = dob;
+    strcpy(new_account.name,"Yash");
+    new_account.phone = 9801306775;
+
+    return new_account;
 }
